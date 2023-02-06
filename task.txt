@@ -12,7 +12,7 @@ using
 
 ( Amenities checkboxes are clickable) Clickable check box.
 
-Home task:
+To do:
 - test with 1 checkbox return 1 result
 - test without checkboxes checked 12results
 - Wait method
