@@ -79,7 +79,14 @@ public class CalendarTest extends BaseTest {
     }
 
     @Test
-    public void isCurrentDateHighlighted(){
+    public void isYesterdayCantBeSelected() {
+        searchPage.pressCheckInDate();
+        calendarPage.selectCheckInDate();
+        Assert.assertTrue(calendarPage.isYesterdayDisabled());
+    }
+
+    @Test
+    public void isCurrentDateHighlighted() {
         searchPage.pressCheckInDate();
         calendarPage.selectCheckInDate();
         calendarPage.getCheckInHighlightedColor();
@@ -89,7 +96,7 @@ public class CalendarTest extends BaseTest {
     }
 
     @Test
-    public void isTomorrowDateHighlighted(){
+    public void isTomorrowDateHighlighted() {
         searchPage.pressCheckInDate();
         calendarPage.selectCheckInDate();
         calendarPage.selectCheckOutDate();
@@ -101,12 +108,11 @@ public class CalendarTest extends BaseTest {
     }
 
     @Test
-    public void isDayBetweenHighlighted(){
+    public void isDayBetweenHighlighted() {
         searchPage.pressCheckInDate();
         calendarPage.selectCheckInDate();
         calendarPage.selectDayAfterTomorrow();
         searchPage.pressCheckOutDate();
-        //calendarPage.getCheckOutHighlightedColor();
         String actualValue = calendarPage.getBetweenDateHighlightedColor();
         String expectedValue = highlightedColorBetween;
         Assert.assertEquals(actualValue, expectedValue);

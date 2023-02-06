@@ -27,30 +27,25 @@ public class SearchPage {
         PageFactory.initElements(webDriver, this);
     }
 
-//    public boolean filterButtonPresent(){
-//        return filterButton.isEnabled();
-//    }
-
-    public FilterPage pressFilterButton(){
+    public FilterPage pressFilterButton() {
         filterButton.click();
         return new FilterPage(webDriver);
     }
 
-    public String getCheckInDateValue(){
+    public String getCheckInDateValue() {
         return selectedCheckInDate.getText();
     }
 
-    public String getCheckOutDateValue(){
+    public String getCheckOutDateValue() {
         return selectedCheckOutDate.getText();
-
     }
 
-    public CalendarPage pressCheckInDate(){
+    public CalendarPage pressCheckInDate() {
         checkInDate.click();
         return new CalendarPage(webDriver);
     }
 
-    public CalendarPage pressCheckOutDate(){
+    public CalendarPage pressCheckOutDate() {
         checkOutDate.click();
         return new CalendarPage(webDriver);
     }

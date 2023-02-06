@@ -12,33 +12,35 @@ public class CalendarPage {
     private WebDriver webDriver;
     private static String CURRENT_DATE = Integer.toString(TestHelper.getCurrentDateNumber());
     private static String TOMORROW_DATE = Integer.toString(TestHelper.getTomorrowDateNumber());
-    //private static String DAY_AFTER_TOMORROW = Integer.toString(TestHelper.getTomorrowDateNumber()+1);
+    private static String DAY_AFTER_TOMORROW = Integer.toString(TestHelper.getTomorrowDateNumber() + 1);
 
     public CalendarPage(WebDriver webDriver) {
         this.webDriver = webDriver;
         PageFactory.initElements(webDriver, this);
     }
 
-    @FindBy(xpath = "//*[@class ='sc-dkQUaI ktZJUZ CalendarDay'][contains(text(),CURRENT_DATE)]")
+    @FindBy(xpath = "//*[@class ='sc-WZYut bJAXZb CalendarDay'][contains(text(),CURRENT_DATE)]")
     private WebElement checkInDate;
 
-    @FindBy(xpath = "//*[@class ='sc-dkQUaI ktZJUZ CalendarDay'][contains(text(),TOMORROW_DATE)]")
+    @FindBy(xpath = "//*[@class ='sc-WZYut bJAXZb CalendarDay'][contains(text(),TOMORROW_DATE)]")
     private WebElement checkOutDate;
 
-    //TODO Figure out with DAY_AFTER_TOMORROW
-    @FindBy(xpath = "//*[@class ='sc-dkQUaI ktZJUZ CalendarDay'][contains(text(),7)]")
+    @FindBy(xpath = "//*[@class ='sc-dkQUaI ktZJUZ CalendarDay'][contains(text(),DAY_AFTER_TOMORROW)]")
     private WebElement dayAfterTomorrow;
 
-    @FindBy(xpath = "//*[@class ='sc-dkQUaI kAGYPk CalendarDay'][contains(text(),CURRENT_DATE)]")
+    @FindBy(xpath = "//*[@class ='sc-WZYut dIegcZ CalendarDay'][contains(text(),CURRENT_DATE)]")
+    private WebElement yesterdayDate;
+
+    @FindBy(xpath = "//*[@class ='sc-WZYut canGOi CalendarDay'][contains(text(),CURRENT_DATE)]")
     private WebElement selectedCheckInDate;
 
-    @FindBy(xpath = "//*[@class ='sc-dkQUaI kAGYPk CalendarDay'][contains(text(),TOMORROW_DATE)]")
+    @FindBy(xpath = "//*[@class ='sc-WZYut canGOi CalendarDay'][contains(text(),TOMORROW_DATE)]")
     private WebElement selectedCheckOutDate;
 
-    @FindBy(xpath = "//*[@class = 'sc-dkQUaI iLCJWy CalendarDay'][contains(text(),TOMORROW_DATE)]")
+    @FindBy(xpath = "//*[@class = 'sc-WZYut canGOi CalendarDay'][contains(text(),TOMORROW_DATE)]")
     private WebElement selectedCheckOutDateAfterReopening;
 
-    @FindBy(xpath = "//*[@class ='sc-dkQUaI eHAbRu CalendarDay'][contains(text(),TOMORROW_DATE)]")
+    @FindBy(xpath = "//*[@class ='sc-WZYut canGOi CalendarDay'][contains(text(),TOMORROW_DATE)]")
     private WebElement selectedBetweenDay;
 
     @FindBy(xpath = "//*[@class='sc-fHCHyC crlswz']")
@@ -76,5 +78,7 @@ public class CalendarPage {
         dayAfterTomorrow.click();
     }
 
-
+    public boolean isYesterdayDisabled() {
+        return yesterdayDate.isDisplayed();
+    }
 }

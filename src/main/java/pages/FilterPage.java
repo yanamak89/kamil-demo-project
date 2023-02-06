@@ -4,16 +4,17 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import utills.TestHelper;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
 
-//Soft assert JUnit https://stackoverflow.com/questions/60221440/can-we-use-soft-assert-in-junit-as-like-testng
-
 public class FilterPage {
     private WebDriver webDriver;
+
     @FindBy(xpath = "//input[contains(@placeholder,'From')]")
     private WebElement priceFrom;
     @FindBy(xpath = "//input[contains(@placeholder,'To')]")
@@ -42,22 +43,9 @@ public class FilterPage {
     //The same class locator for checkboxes, I found unique
     @FindBy(xpath = "//*[@class ='sc-dTSzeu krkYvd'][contains(text(),'Beach front')]")
     private WebElement beachFrontCheckBox;
-//    @FindBy(xpath = "//*[@class ='sc-dTSzeu krkYvd'][contains(text(),'Free WiFi')]")
-//    private WebElement freeWiFiCheckBox;
-//    @FindBy(xpath = "//*[@class ='sc-dTSzeu krkYvd'][contains(text(),'Air conditioning')]")
-//    private WebElement airConditioningCheckBox;
-//    @FindBy(xpath = "//*[@class ='sc-dTSzeu krkYvd'][contains(text(),'Pets allowed')]")
-//    private WebElement petsAllowedCheckBox;
-//    @FindBy(xpath = "//*[@class ='sc-dTSzeu krkYvd'][contains(text(),'Swimming pool')]")
-//    private WebElement swimmingPoolCheckBox;
-//    @FindBy(xpath = "//*[@class ='sc-dTSzeu krkYvd'][contains(text(),'Kitchen')]")
-//    private WebElement kitchenCheckBox;
-//    @FindBy(xpath = "//*[@class ='sc-dTSzeu krkYvd'][contains(text(),'Washing Machine')]")
-//    private WebElement washingMachineCheckBox;
-//    @FindBy(xpath = "//*[@class ='sc-dTSzeu krkYvd'][contains(text(),'Hot tub')]")
-//    private WebElement hotTubCheckBox;
+
     @FindBy(xpath = "//*[@class ='sc-dTSzeu krkYvd']")
-    private List <WebElement> amenitiesCheckboxes;
+    private List<WebElement> amenitiesCheckboxes;
 
     @FindBy(xpath = "//*[contains(text(),'Clear all')]")
     private WebElement clearAll;
@@ -73,11 +61,11 @@ public class FilterPage {
         PageFactory.initElements(webDriver, this);
     }
 
-    public boolean isPriceFromEnabled(){
+    public boolean isPriceFromEnabled() {
         return priceFrom.isEnabled();
     }
 
-    public boolean isPriceToEnabled(){
+    public boolean isPriceToEnabled() {
         return priceTo.isEnabled();
     }
 
@@ -111,11 +99,11 @@ public class FilterPage {
         }
     }
 
-    public void pressClearAllButton(){
+    public void pressClearAllButton() {
         clearAll.click();
     }
 
-    public void clickApplyButton(){
+    public void clickApplyButton() {
         applyButton.click();
     }
 
@@ -123,22 +111,13 @@ public class FilterPage {
         beachFrontCheckBox.click();
     }
 
-    public void selectAllCheckboxes(){
-        for (WebElement element: amenitiesCheckboxes) {
+    public void selectAllCheckboxes() {
+        for (WebElement element : amenitiesCheckboxes) {
             element.click();
         }
     }
 
-    public boolean isNoResultsPresent(){
-        TestHelper.sleep5Seconds();
-       return noResultsFound.isDisplayed();
+    public boolean isNoResultsPresent() {
+        return noResultsFound.isDisplayed();
     }
-
-//    public boolean isBeachFrontCheckBoxSelected() {
-//        String st = beachFrontCheckBox.getAttribute(beachFrontCheckBox)
-//        return beachFrontCheckBox.isEnabled();
-//
-//    }
-
-
 }

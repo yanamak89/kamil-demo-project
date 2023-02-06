@@ -6,29 +6,34 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import utills.TestHelper;
 
-public class MainPage {
+import java.time.Duration;
 
+public class MainPage {
     private WebDriver webDriver;
+    private WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofMillis(2000));
+
     @FindBy(xpath = "//*[contains(text(),'Search')]")
     private WebElement searchButton;
 
-
+    @FindBy(xpath = "//*[contains(text(), 'All listings')]")
+    private WebElement allListingsButton;
 
     public MainPage(WebDriver webDriver) {
         this.webDriver = webDriver;
         PageFactory.initElements(webDriver, this);
     }
 
-    //to do!
     public SearchPage pressSearchButton() {
-        //TODO WebDriver Wait!
-//        WebDriverWait wait = new WebDriverWait(webDriver, 5);
-//        WebElement element = wait.until(ExpectedConditions.elementToBeClickable(searchButton));
-//        element.click();
-        TestHelper.sleep5Seconds();
-        searchButton.click();
+        WebElement element = wait.until(ExpectedConditions.elementToBeClickable(searchButton));
+        element.click();
         return new SearchPage(webDriver);
+    }
+
+    public void getAllListingsPage() {
+        allListingsButton.click();
     }
 }
